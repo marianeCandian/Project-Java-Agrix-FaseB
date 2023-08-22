@@ -1,5 +1,6 @@
 package com.betrybe.agrix.models.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,9 +16,7 @@ public class Farm {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-
   private String name;
-
   private Double size;
 
   public Farm() {
@@ -56,4 +55,5 @@ public class Farm {
   public void setSize(Double size) {
     this.size = size;
   }
+
 }

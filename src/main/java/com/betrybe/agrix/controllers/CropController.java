@@ -9,7 +9,6 @@ import com.betrybe.agrix.services.FarmService;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import org.hibernate.mapping.Any;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -69,13 +68,14 @@ public class CropController {
     }
 
     List<Crop> allCrops = cropService.getAllCrops();
-    List listaStream = allCrops.stream()
+    List listsStream = allCrops.stream()
         .filter(crop -> crop.getFarmId().equals(farmId))
         .map((crop) -> new CropDto(
-            crop.getId(), crop.getName(), crop.getFarmId(), crop.getPlantedArea()))
+            crop.getId(), crop.getName(), crop.getFarmId(), crop.getPlantedArea(),
+            crop.getPlantingDate(), crop.getHarvestDate()))
         .collect(Collectors.toList());
 
-    return  ResponseEntity.ok(listaStream);
+    return ResponseEntity.ok(listsStream);
 
   }
 
@@ -136,7 +136,8 @@ public class CropController {
     List<Crop> allCrops = cropService.getAllCrops();
     return allCrops.stream()
         .map((crop) -> new CropDto(
-            crop.getId(), crop.getName(), crop.getFarmId(), crop.getPlantedArea()))
+            crop.getId(), crop.getName(), crop.getFarmId(), crop.getPlantedArea(),
+            crop.getPlantingDate(), crop.getHarvestDate()))
         .collect(Collectors.toList());
   }
 
