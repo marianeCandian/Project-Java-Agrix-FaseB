@@ -1,7 +1,10 @@
 package com.betrybe.agrix.services;
 
+import com.betrybe.agrix.exception.NotFoundError;
 import com.betrybe.agrix.models.entities.Crop;
+import com.betrybe.agrix.models.entities.Fertilizer;
 import com.betrybe.agrix.models.repositories.CropRepository;
+import com.betrybe.agrix.models.repositories.FertilizerRepository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +17,15 @@ import org.springframework.stereotype.Service;
 public class CropService {
 
   private CropRepository cropRepository;
+  private FertilizerRepository fertilizerRepository;
 
   /**
    * Crop constructor.
    */
   @Autowired
-  public CropService(CropRepository cropRepository) {
+  public CropService(CropRepository cropRepository, FertilizerRepository fertilizerRepository) {
     this.cropRepository = cropRepository;
+    this.fertilizerRepository = fertilizerRepository;
   }
 
   public Crop insertCrop(Crop crop) {
@@ -69,4 +74,44 @@ public class CropService {
     return cropRepository.findAll();
   }
 
+  /**
+   * Metodo para salvar um fertilizante em uma plantação.
+   */
+  public void setFertilizerToCrop(Long cropId, Long fertilizerId) {
+    Optional<Crop> optionalCrop = cropRepository.findById(cropId);
+
+    if (optionalCrop.isEmpty()) {
+      throw new NotFoundError("Plantação não encontrada!");
+    }
+
+    Optional<Fertilizer> optionalFertilizer = Optional.of(
+        fertilizerRepository.getReferenceById(fertilizerId));
+
+    if (optionalFertilizer.isEmpty()) {
+      throw new NotFoundError("Fertilizante não encontrada!");
+    }
+
+    Crop crop = optionalCrop.get();
+    Fertilizer fertilizer = optionalFertilizer.get();
+
+    crop.getFertilizers().add(fertilizer);
+    fertilizer.getCrops().add(crop);
+
+    cropRepository.save(crop);
+    fertilizerRepository.save(fertilizer);
+  }
+
+  /**
+   * Metodo para pegar todos os fertilizantes por um cropId.
+   */
+  public List<Fertilizer> getFertilizerByCropId(long cropId) {
+    Optional<Crop> optionalCrop = cropRepository.findById(cropId);
+
+    if (optionalCrop.isEmpty()) {
+      throw new NotFoundError("Plantação não encontrada!");
+    }
+
+    Crop crop = optionalCrop.get();
+    return crop.getFertilizers();
+  }
 }

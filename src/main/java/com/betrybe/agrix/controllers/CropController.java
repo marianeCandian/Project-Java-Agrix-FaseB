@@ -4,8 +4,10 @@ import com.betrybe.agrix.controllers.dto.CropDto;
 import com.betrybe.agrix.controllers.dto.ResponseDto;
 import com.betrybe.agrix.models.entities.Crop;
 import com.betrybe.agrix.models.entities.Farm;
+import com.betrybe.agrix.models.entities.Fertilizer;
 import com.betrybe.agrix.services.CropService;
 import com.betrybe.agrix.services.FarmService;
+import com.betrybe.agrix.services.FertilizerService;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -33,14 +35,17 @@ public class CropController {
   private CropService cropService;
 
   private FarmService farmService;
+  private FertilizerService fertilizerService;
 
   /**
    * Crop controller constructor.
    */
   @Autowired
-  public CropController(CropService cropService, FarmService farmService) {
+  public CropController(CropService cropService, FarmService farmService,
+      FertilizerService fertilizerService) {
     this.cropService = cropService;
     this.farmService = farmService;
+    this.fertilizerService = fertilizerService;
   }
 
   /**
@@ -157,6 +162,26 @@ public class CropController {
             crop.getId(), crop.getName(), crop.getFarmId(), crop.getPlantedArea(),
             crop.getPlantedDate(), crop.getHarvestDate()))
         .collect(Collectors.toList());
+  }
+
+  /**
+   * Metodo associa Fertilizer a um Crop.
+   */
+  @PostMapping("/crops/{cropId}/fertilizers/{fertilizerId}")
+  public ResponseEntity<?> associateFertilizerToCrop(@PathVariable Long cropId,
+      @PathVariable Long fertilizerId) {
+    cropService.setFertilizerToCrop(cropId, fertilizerId);
+    return ResponseEntity.status(HttpStatus.CREATED)
+        .body("Fertilizante e plantação associados com sucesso!");
+  }
+
+  /**
+   * Metodo Get fertilizer by cropId.
+   */
+  @GetMapping("/crops/{cropId}/fertilizers")
+  public ResponseEntity<List<Fertilizer>> getFertilizersByCropId(@PathVariable Long cropId) {
+    List<Fertilizer> fertilizers = cropService.getFertilizerByCropId(cropId);
+    return ResponseEntity.ok(fertilizers);
   }
 
 }

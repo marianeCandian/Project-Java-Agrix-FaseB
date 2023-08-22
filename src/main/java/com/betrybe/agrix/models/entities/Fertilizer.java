@@ -76,4 +76,12 @@ public class Fertilizer {
   public void setComposition(String composition) {
     this.composition = composition;
   }
+
+  public List<Crop> getCrops() {
+    return crops;
+  }
+
+  public void setCrops(List<Crop> crops) {
+    this.crops = crops;
+  }
 }

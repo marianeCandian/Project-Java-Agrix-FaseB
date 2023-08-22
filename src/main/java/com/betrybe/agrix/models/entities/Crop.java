@@ -132,4 +132,5 @@ public class Crop {
   public void setFertilizers(List<Fertilizer> fertilizers) {
     this.fertilizers = fertilizers;
   }
+
 }
