@@ -6,6 +6,7 @@ import com.betrybe.agrix.models.entities.Crop;
 import com.betrybe.agrix.models.entities.Farm;
 import com.betrybe.agrix.services.CropService;
 import com.betrybe.agrix.services.FarmService;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -136,6 +138,22 @@ public class CropController {
     List<Crop> allCrops = cropService.getAllCrops();
     return allCrops.stream()
         .map((crop) -> new CropDto(
+            crop.getId(), crop.getName(), crop.getFarmId(), crop.getPlantedArea(),
+            crop.getPlantedDate(), crop.getHarvestDate()))
+        .collect(Collectors.toList());
+  }
+
+  /**
+   * Metodo Get filtrado por datas.
+   */
+  @GetMapping("/crops/search")
+  public List<CropDto> getCropsByDate(@RequestParam LocalDate start, @RequestParam LocalDate end) {
+    List<Crop> cropsByDate = cropService.getAllCrops();
+    return cropsByDate.stream()
+        .filter(crop -> crop.getHarvestDate().isAfter(start)
+            &&
+            crop.getHarvestDate().isBefore(end))
+        .map(crop -> new CropDto(
             crop.getId(), crop.getName(), crop.getFarmId(), crop.getPlantedArea(),
             crop.getPlantedDate(), crop.getHarvestDate()))
         .collect(Collectors.toList());
