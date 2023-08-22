@@ -72,7 +72,7 @@ public class CropController {
         .filter(crop -> crop.getFarmId().equals(farmId))
         .map((crop) -> new CropDto(
             crop.getId(), crop.getName(), crop.getFarmId(), crop.getPlantedArea(),
-            crop.getPlantingDate(), crop.getHarvestDate()))
+            crop.getPlantedDate(), crop.getHarvestDate()))
         .collect(Collectors.toList());
 
     return ResponseEntity.ok(listsStream);
@@ -137,7 +137,7 @@ public class CropController {
     return allCrops.stream()
         .map((crop) -> new CropDto(
             crop.getId(), crop.getName(), crop.getFarmId(), crop.getPlantedArea(),
-            crop.getPlantingDate(), crop.getHarvestDate()))
+            crop.getPlantedDate(), crop.getHarvestDate()))
         .collect(Collectors.toList());
   }
 

@@ -7,16 +7,16 @@ import java.time.LocalDate;
 /**
  * Crop dto.
  */
-public record CropDto(Long id, String name, Long farmId, Double plantedArea, LocalDate plantingDate,
+public record CropDto(Long id, String name, Long farmId, Double plantedArea, LocalDate plantedDate,
                       LocalDate harvestDate) {
 
 
   public Crop toCrop(Long farmId) {
-    return new Crop(id, farmId, name, plantedArea, plantingDate, harvestDate);
+    return new Crop(id, farmId, name, plantedArea, plantedDate, harvestDate);
   }
 
   public Crop toCrop() {
-    return new Crop(id, farmId, name, plantedArea, plantingDate, harvestDate);
+    return new Crop(id, farmId, name, plantedArea, plantedDate, harvestDate);
   }
 
 }

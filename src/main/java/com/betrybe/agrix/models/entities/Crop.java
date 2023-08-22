@@ -28,8 +28,8 @@ public class Crop {
   @Column(name = "planted_area")
   private Double plantedArea;
 
-  @Column(name = "planting_date")
-  private LocalDate plantingDate;
+  @Column(name = "planted_date")
+  private LocalDate plantedDate;
 
   @Column(name = "harvest_date")
   private LocalDate harvestDate;
@@ -41,13 +41,13 @@ public class Crop {
   /**
    * Crop entity constructor.
    */
-  public Crop(Long id, Long farmId, String name, Double plantedArea, LocalDate plantingDate,
+  public Crop(Long id, Long farmId, String name, Double plantedArea, LocalDate plantedDate,
       LocalDate harvestDate) {
     this.id = id;
     this.farmId = farmId;
     this.name = name;
     this.plantedArea = plantedArea;
-    this.plantingDate = plantingDate;
+    this.plantedDate = plantedDate;
     this.harvestDate = harvestDate;
   }
 
@@ -83,12 +83,12 @@ public class Crop {
     this.plantedArea = plantedArea;
   }
 
-  public LocalDate getPlantingDate() {
-    return plantingDate;
+  public LocalDate getPlantedDate() {
+    return plantedDate;
   }
 
-  public void setPlantingDate(LocalDate plantingDate) {
-    this.plantingDate = plantingDate;
+  public void setPlantedDate(LocalDate plantedDate) {
+    this.plantedDate = plantedDate;
   }
 
   public LocalDate getHarvestDate() {
