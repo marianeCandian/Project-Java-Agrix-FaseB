@@ -84,11 +84,10 @@ public class CropService {
       throw new NotFoundError("Plantação não encontrada!");
     }
 
-    Optional<Fertilizer> optionalFertilizer = Optional.of(
-        fertilizerRepository.getReferenceById(fertilizerId));
+    Optional<Fertilizer> optionalFertilizer = fertilizerRepository.findById(fertilizerId);
 
     if (optionalFertilizer.isEmpty()) {
-      throw new NotFoundError("Fertilizante não encontrada!");
+      throw new NotFoundError("Fertilizante não encontrado!");
     }
 
     Crop crop = optionalCrop.get();

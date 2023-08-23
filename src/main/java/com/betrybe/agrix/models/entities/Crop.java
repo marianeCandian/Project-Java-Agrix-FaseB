@@ -39,6 +39,7 @@ public class Crop {
   private LocalDate harvestDate;
 
   @ManyToMany
+  @JsonIgnore
   @JoinTable(
       name = "crop_fertilizer",
       joinColumns = @JoinColumn(name = "fertilize_id"),

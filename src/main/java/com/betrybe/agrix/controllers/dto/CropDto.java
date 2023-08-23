@@ -1,7 +1,6 @@
 package com.betrybe.agrix.controllers.dto;
 
 import com.betrybe.agrix.models.entities.Crop;
-import com.betrybe.agrix.models.entities.Farm;
 import java.time.LocalDate;
 
 /**
@@ -12,7 +11,7 @@ public record CropDto(Long id, String name, Long farmId, Double plantedArea, Loc
 
 
   public Crop toCrop(Long farmId) {
-    return new Crop(id, farmId, name, plantedArea, plantedDate, harvestDate);
+    return new Crop(id, farmId, name, plantedArea, plantedDate, harvestDate, null);
   }
 
   public Crop toCrop() {
