@@ -5,21 +5,22 @@ Este projeto em Java é uma expansão da aplicação Agrix, parte do desenvolvim
 O Agrix é um sistema desenvolvido para facilitar a gestão e monitoramento de fazendas, visando melhorar a eficiência no cultivo de plantações e reduzir o desperdício de recursos. Esta fase do projeto amplia as funcionalidades implementadas na fase A.
 
 ## Funcionalidades
-Implementação de rotas da API com Spring Boot.
-Aplicação de injeção de dependências para conectar as camadas de controle, serviço e persistência.
-Utilização do Spring Data para implementar entidades e repositórios para persistência em bancos de dados, incluindo buscas customizadas.
-Utilização de campos de data nas rotas da API e no banco de dados.
-Criação de testes unitários para garantir a qualidade e funcionamento correto da implementação, com cobertura de código adequada.
-Por que isso é importante?
+Implementação de rotas da API com Spring Boot.</p>
+Aplicação de injeção de dependências para conectar as camadas de controle, serviço e persistência.</p>
+Utilização do Spring Data para implementar entidades e repositórios para persistência em bancos de dados, incluindo buscas customizadas.</p>
+Utilização de campos de data nas rotas da API e no banco de dados.</p>
+Criação de testes unitários para garantir a qualidade e funcionamento correto da implementação, com cobertura de código adequada.</p>
+
+## Por que isso é importante?
 Este projeto expande o conhecimento adquirido sobre o ecossistema Spring, especialmente no que diz respeito à criação de rotas da API, injeção de dependências e utilização do Spring Data para persistência em bancos de dados. Além disso, permite praticar a criação de testes unitários para garantir a qualidade do código e o funcionamento correto da aplicação.
 
 ## Conceitos Abordados
-Desenvolvimento de rotas da API com Spring Boot.
-Injeção de dependências para conectar as camadas de controle, serviço e persistência.
-Utilização do Spring Data para persistência em bancos de dados.
-Implementação de buscas customizadas com Spring Data.
-Utilização de campos de data com LocalDataTime.
-Criação de testes unitários para garantir a qualidade do código.
+Desenvolvimento de rotas da API com Spring Boot.</p>
+Injeção de dependências para conectar as camadas de controle, serviço e persistência.</p>
+Utilização do Spring Data para persistência em bancos de dados.</p>
+Implementação de buscas customizadas com Spring Data.</p>
+Utilização de campos de data com LocalDataTime.</p>
+Criação de testes unitários para garantir a qualidade do código.</p>
 
 ## Como usar
 1-Clone o repositório para o seu ambiente local:
